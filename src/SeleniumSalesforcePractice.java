@@ -26,7 +26,7 @@ public class SeleniumSalesforcePractice {
 		
 		WebDriver driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		driver.get("https://horizontaldigital-ba-dev-ed.develop.my.salesforce.com/");
 		driver.findElement(By.id("username")).sendKeys("ssinha@lwc.com");
 		driver.findElement(By.id("password")).sendKeys("Spaarroow&979797");
@@ -55,10 +55,15 @@ public class SeleniumSalesforcePractice {
 			e.printStackTrace();
 		}
         driver.findElement(By.xpath("//div/div/lightning-accordion/div/slot/lightning-accordion-section/div/section/div/slot/div/one-app-launcher-app-tile[@data-name='Sales']")).click();
-        driver.findElement(By.xpath("//one-app-nav-bar-item-root[@data-id='Account']")).click();
+        driver.findElement(By.xpath("//nav/div/one-app-nav-bar-item-root[@data-id='Account']")).click();       
         driver.findElement(By.cssSelector("a[title='New']")).click();
-        driver.findElement(By.xpath("//input[@id='input-247']")).sendKeys("Shahil's Account");
-        driver.findElement(By.cssSelector("#combobox-button-280[data-value='--None--']")).sendKeys("Prospect");
+        try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+        driver.findElement(By.xpath("(//input[@name='Name'])")).sendKeys("Shahil's Second Account");
+        driver.findElement(By.xpath("//button[@name='SaveEdit']")).click();
 	}
 
 }
