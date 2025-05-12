@@ -4,8 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-
-
 public class Assignment2 {
 
 	public static void main(String[] args) {
@@ -18,12 +16,12 @@ public class Assignment2 {
 		driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Password");
 		driver.findElement(By.id("exampleCheck1")).click();
 		WebElement dropdownElement = driver.findElement(By.id("exampleFormControlSelect1"));
-        Select dropdownSelect = new Select(dropdownElement);
-        dropdownSelect.selectByVisibleText("Male");
-        driver.findElement(By.id("inlineRadio1")).click();
-        driver.findElement(By.cssSelector("input[type='date']")).sendKeys("1998-01-27");
-        driver.findElement(By.cssSelector("input[type='submit']")).click();
-        System.out.println(driver.findElement(By.cssSelector(".alert-success")).getText());
+		Select dropdownSelect = new Select(dropdownElement);
+		dropdownSelect.selectByVisibleText("Male");
+		driver.findElement(By.id("inlineRadio1")).click();
+		driver.findElement(By.cssSelector("input[type='date']")).sendKeys("1998-01-27");
+		driver.findElement(By.cssSelector("input[type='submit']")).click();
+		System.out.println(driver.findElement(By.cssSelector(".alert-success")).getText());
 
 	}
 
