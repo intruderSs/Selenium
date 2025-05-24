@@ -1,7 +1,10 @@
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.sql.DriverManager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,8 +25,19 @@ public class Scope {
 		System.out.println("The first column of footer sections contains " +firstColumnElement.findElements(By.tagName("a")).size()+" links.");
 		
 		for (int i = 1; i < firstColumnElement.findElements(By.tagName("a")).size(); i++) {
-			firstColumnElement.findElements(By.tagName("a")).get(i).click();
+	        String clickonLinkTab = Keys.chord(Keys.CONTROL, Keys.ENTER);
+			firstColumnElement.findElements(By.tagName("a")).get(i).sendKeys(clickonLinkTab);
 		}
+		
+		Set<String> childWindows = driver.getWindowHandles();
+		Iterator<String> iterator = childWindows.iterator();
+		
+		while (iterator.hasNext()) {
+			driver.switchTo().window(iterator.next());
+			System.out.println(driver.getTitle());
+		}
+		driver.switchTo().defaultContent();
+		
 	}
 
 }
