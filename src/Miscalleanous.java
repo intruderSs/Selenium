@@ -7,6 +7,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.google.common.io.Files;
+
 public class Miscalleanous {
 
 	public static void main(String[] args) throws IOException {
@@ -18,7 +20,7 @@ public class Miscalleanous {
 		driver.get("https://www.google.com");
 		
 		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(srcFile, new File("C:\\Users\\shahi\\screenshot_Selenium.png"));
+		Files.copy(srcFile, new File("d:\\screenshot.png"));
 
 	}
 
