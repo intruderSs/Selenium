@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,15 +14,14 @@ public class TableSortingusingJavaStreams {
 		// TODO Auto-generated method stub
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		
+
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
 		WebElement staticDropdownElement = driver.findElement(By.id("page-menu"));
 		Select select = new Select(staticDropdownElement);
 		select.selectByValue("20");
-		
-		
-		/////Old way of doing this stuff
-		
+
+		///// Old way of doing this stuff
+
 //		ArrayList<String> unsortedList = new ArrayList<String>();
 //		ArrayList<String> sortedList = new ArrayList<String>();
 //		
@@ -40,19 +38,21 @@ public class TableSortingusingJavaStreams {
 //		}
 //		
 //		Assert.assertEquals(unsortedList, sortedList);
-		
-		
-		/////Doing this using java streams
+
+		///// Doing this using java streams
 		///
-	    List<String> unorderedList = driver.findElements(By.cssSelector("td:nth-child(1)")).stream().map(s->s.getText()).collect(Collectors.toList());
-	    
-	    List<String> sortedList = unorderedList.stream().sorted().collect(Collectors.toList());
-	    
-	    driver.findElement(By.cssSelector("th:nth-child(1)")).click();
-	    
-	    List<String> listAfterClicking = driver.findElements(By.cssSelector("td:nth-child(1)")).stream().map(s->s.getText()).collect(Collectors.toList());
-	    
-	    Assert.assertTrue(listAfterClicking.equals(sortedList));
+		List<WebElement> veggiesElements = driver.findElements(By.cssSelector("td:nth-child(1)"));
+
+		List<String> unorderedList = veggiesElements.stream().map(s -> s.getText()).collect(Collectors.toList());
+
+		List<String> sortedList = unorderedList.stream().sorted().collect(Collectors.toList());
+
+		driver.findElement(By.cssSelector("th:nth-child(1)")).click();
+
+		List<String> listAfterClicking = driver.findElements(By.cssSelector("td:nth-child(1)")).stream()
+				.map(s -> s.getText()).collect(Collectors.toList());
+
+		Assert.assertTrue(listAfterClicking.equals(sortedList));
 
 	}
 
